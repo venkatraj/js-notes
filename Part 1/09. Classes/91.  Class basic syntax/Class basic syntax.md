@@ -29,7 +29,7 @@ The `class` construct is just a syntax sugar for prototype based classes
 
 ```
 
-A `class` construct is not an object literal format and there is no comma betweenn methods.
+A `class` construct is not an object literal format and there is no comma between methods.
 
 Classes requires `new` operator to instantiate objects.
 

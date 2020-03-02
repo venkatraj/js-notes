@@ -3,9 +3,9 @@ First we need to know the some cs terms
 
 `operator, operand, unary, binary`
 
-`An operator` - is a symbol that performs mathematical operations. We are familiar with this by our school mathamatics.
+`An operator` - is a symbol that performs mathematical operations. We are familiar with this by our school mathematics.
 
-* `+` does addtion
+* `+` does addition
 * `-` does subtraction
 * `*` does multiplication
 * `/` does division
@@ -27,18 +27,18 @@ console.log(cost + tax);
 console.log(+cost + +tax);
 console.log(Number(cost) + Number(tax));
 ```
-`binary` - An operator is binary, if it operates on 2 operands. Here `+` is binary opeator
+`binary` - An operator is binary, if it operates on 2 operands. Here `+` is binary operator
 ```js
 let sum = 5 + 10;
 console.log(sum); // 15
 let language = "Java" + "Script";
 console.log(language); // JavaScript
-console.log('1' + 2); // 12
-console.log(1 + '2'); // 12
+console.log('1' + 2 + 2); // 122
+console.log(1 + 2 + '2'); // 32
 console.log('6'/2); // 3
 ```
 
-## Operator Precedece
+## Operator Precedence
 Usually follows school math. Full list can be seen here.
 [Precedence Table](https://developer.mozilla.org/en/JavaScript/Reference/operators/operator_precedence)
 
@@ -138,3 +138,36 @@ There are bitwise operators in JS as in many languages. These needs to be learnt
 * ZERO-FILL RIGHT SHIFT ( >>> )
 
 [Bitwise Operators](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators)
+
+
+## Tasks
+```js
+let a = 1, b = 1;
+
+let c = ++a; // ? 
+let d = b++; // ? 
+// a, b and c are 2 where as d is 1
+
+// 2nd task
+let a = 2;
+let x = 1 + (a *= 2);
+// a is 4 and x is 5
+
+
+// 3rd task
+"" + 1 + 0      // "10"
+"" - 1 + 0      // -1
+true + false    // 1 + 0 = 1
+6 / "3"         // 2
+"2" * "3"       // 6
+4 + 5 + "px"    // '9px'
+"$" + 4 + 5     // '$45'
+"4" - 2         // 2
+"4px" - 2       // NaN
+7 / 0           // Infinity
+"  -9  " + 5    // '   -9   5'
+"  -9  " - 5    // -14
+null + 1        // 0 + 1 = 1
+undefined + 1   // NaN
+" \t \n" - 2    // -2 (because \t and \n are also spaces and results in empty string)
+```

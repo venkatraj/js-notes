@@ -96,10 +96,10 @@ let my-name; // a hyphen '-' is not allowed in the name
 let return = 10; // Invalid can't use keywords / reserved words
 ```
 ## constants
-Constants are immutable variables meaning that it can't be reassigned a value
+Constants are immutable variables meaning that it can't be reassigned with a value
 ```javascript
 const PI = 3.14;
 const myBirthday = '01.01.2000';
 myBirthday = '01.01.1997'; // Throws error
 ```
-it is common practice to declare a constant in capital letters to hold values that aren't easy to remember. immutable means it can't be reassigned, but it is possible to change the value it holds in certain data types which we will see later. 
+it is common practice to declare a constant in capital letters to hold values that aren't easy to remember and hard coded in script. Immutable means it can't be reassigned, but it is possible to change the value it holds in certain data types which we will see later. 
