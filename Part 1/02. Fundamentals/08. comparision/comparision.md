@@ -1,4 +1,4 @@
-# Comparisions
+# Comparisons
 Greater than `a > b`   
 Less than `a < b`   
 Greater than or equals `a >= b`  
@@ -9,7 +9,7 @@ Identical `===`
 Not identical `!==`  
 
 ## Boolean results
-All comparisions returns boolean value as result
+All comparisons returns boolean value as result
 * If `a > b` returns `true` then it means yes `a` is greater than `b`
 * If `a > b` returns `false` then it means no `a` is not greater than `b`. Its value is less than `b`
 
@@ -18,13 +18,13 @@ console.log( 2 > 1 );  // true
 console.log( 2 == 1 ); // false
 console.log( 2 != 1 ); // true
 ```
-Normally you will use result of comparision with a decision making strcuture, but you can also assign the result to a variable.
+Normally you will use result of comparison with a decision making structure, but you can also assign the result to a variable.
 ```js
 let result = 5 > 4; // assign the result
 console.log( result ); // true
 ```
 
-## String comparision
+## String comparison
 To compare two string, first js sort them and then see which one comes first. The first one is less than the second one.
 ```js
 console.log( 'Z' > 'A' ); // true
@@ -44,7 +44,7 @@ Here the result is `true` because in unicode char encoding table, uppercase lett
 ```
 **Note:** Don't worry if the above code doesn't make sense. We will get into that later.
 
-## Comparision of different types
+## Comparison of different types
 When comparing different types of values, they are converted into `Number` type
 ```js
 console.log( '2' > 1 ); // true
@@ -61,7 +61,7 @@ console.log( Number(false) == 0 ); // true
 ```
 So this obviously creates a problem when we try to compare things between different data types.
 
-## Identical or Strict comparision
+## Identical or Strict comparison
 When equality and non equality operators fail, we use idential operators
 ```js
 console.log( '01' === 1 ); // false
@@ -69,14 +69,14 @@ console.log( true === 1 ); // false
 console.log( false !== 0 ); // true
 ```
 
-## Funny comparision
+## Funny comparison
 ```js
 console.log( null > 0 );  // false
 console.log( null == 0 ); // false
 console.log( null >= 0 ); // true
 ```
 
-There are certain reasons behind this behaviour. Which can be read and memorized. Even if you know the internals of these results, using it in production software is error prone. You should stick with Identical / Strict equality operators.
+There are certain reasons behind this behavior. Which can be read and memorized. Even if you know the internals of these results, using it in production software is error prone. You should stick with Identical / Strict equality operators.
 
 ```js
 console.log( null === undefined ); // false
