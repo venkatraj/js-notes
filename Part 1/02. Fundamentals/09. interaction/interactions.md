@@ -1,12 +1,12 @@
 # Interaction: Alert, Prompt and Confirm
 
 ## Alert
-Used to show a message in modal window and pause script execution until user presess 'ok'
+Used to show a message in modal window and pause script execution until user presses 'ok'
 
 ```js
 alert(message);
 ```
-**Modal Window* means user can't interact with rest of the page until he preses ok on window.
+**Modal Window* means user can't interact with rest of the page until he presses ok on window.
 
 ## Prompt
 This shows a input text field with title and optional placeholder in a modal window and returns user entered text.

@@ -11,12 +11,12 @@ This may sound confusing, so let us see an example
 
 ```
 
-In the above example, the `str` value is converted to uppercase with the help of `toUpperCase()` method. In reality, there is no `toUpperCase()` method that is attached to variable `str` because it is a primitive string value. What really happends is...
+In the above example, the `str` value is converted to uppercase with the help of `toUpperCase()` method. In reality, there is no `toUpperCase()` method that is attached to variable `str` because it is a primitive string value. What really happens is...
 ```js
 
   let str = "hello";
-  alert(str.toUpperCase()); 
-  // psuedo code - This is what happens on the above line
+  alert(str.toUpperCase());
+  // pseudo code - This is what happens on the above line
   new String('hello').toUpperCase();
   // Since `str.` is replaced with `new String('hello')` it becomes object and has methods
   typeof new String('hello'); // object
@@ -34,7 +34,7 @@ Like the above code, though it is possible, it is not recommended to use Primiti
 
 ```
 
-It is perfectly safe and recommended to use it a type casting functions rather than Constructors
+It is perfectly safe and recommended to use it as type casting functions rather than Constructors
 ```js
 
   let num = Number("123"); // convert a string to number

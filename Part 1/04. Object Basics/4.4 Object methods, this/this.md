@@ -103,7 +103,7 @@ let user = {
 };
 let admin = user;
 user.sayName(); // My name is John
-admin.sayName(); // undefined. Becase there is no `user.name` within `admin` object
+admin.sayName(); // undefined. Because there is no `user.name` within `admin` object
 ```
 
 ## `this` is not bound

@@ -1,10 +1,12 @@
 # Functions
-In our `switch` tutorial, we see how we can find Week Day's name based on it number. Such code blocks are useful throughout a large program to find day in a user friendly string rather than using numbers from 0 to 6.
+In our `switch` tutorial, we see how we can find Week Day's name based on its number. Such code blocks are useful throughout a large program to find day in a user friendly string rather than using numbers from 0 to 6.
 
 If we write such block of code through out our program wherever it is needed, it becomes too bloated and hard to maintain.
-For example, if we misspelled `Wednesday` as `Wenesday` then we need to modify it at all occurences. To address such things, we can use functions. In simple terms `Functions` are block of code that has a name. You can execute that block of code, by calling that name.
+For example, if we misspelled `Wednesday` as `Wenesday` then we need to modify it at all occurrences. To address such things, we can use functions. In simple terms `Functions` are block of code that has a name. You can execute that block of code, by calling that name.
 
-We have already seen some built-in functions such as `console.log`, `prompt` and `confirm` we don't know the code behind it, but it works.
+We have already seen some built-in functions such as `console.log`, `prompt` and `confirm` we don't know the code behind it, but it works. 
+
+We can also create our own user defined functions
 
 ## Function declaration
 ```js
@@ -87,7 +89,7 @@ function showMessage(from, text = "Hello") {
 
 showMessage("Ann"); // Ann: Hello
 ```
-### Old style default paramters
+### Old style default parameters
 ```js
 function showMessage(from, text) {
   if (typeof text === "undefined") {
@@ -100,7 +102,7 @@ function showMessage(from, text) {
 OR "clever" one (what is the catch?)
 ```js
 function showMessage(from, text) {
-  // if text is falsy then text gets the "default" value
+  // if text is falsy i.e. empty string then text gets the "default" value `no text given`
   text = text || 'no text given';
   ...
 }
@@ -117,7 +119,7 @@ function sum(a, b) {
 let result = sum(1, 2);
 console.log( result ); // 3
 ```
-Once the execution flow encouters `return` keyword, it stops executing that function and exists the function and return to where it is called. So, it is possible to have multiple `return` in a function
+Once the execution flow encounters `return` keyword, it stops executing that function and exits the function and return to where it is called. So, it is possible to have multiple `return` in a function
 ```js
 function checkAge(age) {
   if (age > 18) {

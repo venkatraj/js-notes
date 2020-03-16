@@ -3,7 +3,7 @@ Two operators help us with decision making
 * if statements
 * conditional ternary operators
 
-## `if` statments
+## `if` statements
 The "if" statement gets a condition, evaluates it and, if the result is true, executes the code.
 ```js
 let year = prompt('In which year was ECMAScript-2015 specification published?', '');
@@ -52,19 +52,19 @@ if (year < 2015) {
 ```
 
 ## Ternary operator
-Sometime we need to perform a simple check where `if else` can be over kill
+Sometimes we need to perform a simple check where `if else` can be over kill
 Consider this...
 ```js
-let accessAllowed;
+let canAccess;
 let age = prompt('How old are you?', '');
 
 if (age > 18) {
-  accessAllowed = true;
+  canAccess = true;
 } else {
-  accessAllowed = false;
+  canAccess = false;
 }
 
-alert(accessAllowed);
+alert(canAccess);
 ```
 
 All we want to check is whether the age is 18 or not and based on result we want to set a variable.
@@ -75,11 +75,11 @@ let result = condition ? value1 : value2;
 ```
 The above example can be rewritten using ternary operator like this...
 ```js
-let accessAllowed = age > 18 ? true : false;
+let canAccess = age > 18 ? true : false;
 ```
 Since all comparision operators return boolean values, it is possible to rewrite the above as this (but not recommended, remember explicit is better than implicit)
 ```js
-let accessAllowed = age > 18;
+let canAccess = age > 18;
 ```
 
 ## Nested ternary operator
@@ -124,7 +124,7 @@ if (a + b < 4) {
 Rewrite this using ternary operator
 ```js
 let message;
-
+// use yoda conditions, it is better than this
 if (login == 'Employee') {
   message = 'Hello';
 } else if (login == 'Director') {

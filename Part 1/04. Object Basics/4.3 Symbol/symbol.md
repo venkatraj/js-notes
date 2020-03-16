@@ -1,5 +1,7 @@
+Also read: https://codeburst.io/a-practical-guide-to-es6-symbol-3fc90117c7ac
+
 # Symbol Type
-Object property name can be either string type or symbol type. So far we have seen only string type object property names. Even if we used property names such as 
+Object property name can be either string type or symbol type. So far we have seen only string type object property names. Even if we used property names such as
 ```js
 let phoneCodes = {
   91: "India",
@@ -82,16 +84,23 @@ Normally, we will use clousers (which we will see soon) to hide properties. But 
 ```js
 let user = { name: "John" };
 let id = Symbol("id");
-
 user[id] = "ID Value";
-console.log( user[id] ); // we can access the data using the symbol as the key
 
-// In some other script they have this
-let id = Symbol("id");
+// we can access the data using the symbol as the key
+console.log( user[id] );
 
-user[id] = "Their id value";
+
+function anotherScript() {
+  // In some other script they have this
+  let id = Symbol("id");
+  user[id] = "Their id value";
+  console.log(user[id])
+}
+
+anotherScript();
+console.log( user[id] );
 ```
-In above script no damage has been done. Because `id` variable has a unique identifier which is different from the original one. The scope of this `id` will end when script completes execution and when you use `id` in your script you are actually using the original unique symbol. 
+In above script no damage has been done. Because `id` variable has a unique identifier which is different from the original one. The scope of this `id` will end when script completes execution and when you use `id` in your script you are actually using the original unique symbol.
 
 So symbols prevents situations like this
 ```js
@@ -104,6 +113,19 @@ user.id = "ID Value";
 
 user.id = "Their id value"
 // boom! overwritten! it did not mean to harm the colleague, but did it!
+```
+```js
+const SECRET = Symbol('secret')
+let data = { }
+data[SECRET] = 10
+let newData = Object.assign({ }, data)
+
+Object.getOwnPropertyNames(data)  // []
+(SECRET in data)                  // true
+(SECRET in newData)               // true
+
+// But can be detectable
+Object.getOwnPropertySymbols(data)
 ```
 
 ## Symbols in a literal
@@ -150,9 +172,9 @@ Using `Object.assign` copies both string and symbol properties. Since when you c
 ## Global Symbols
 Symbols are great way to hide property from changing it accidentally. But sometimes we want to access them  at will.
 
-Say, we want to access a object based on an `id` This should be exactly the same `id` when the object was created and used to identify it uniquely.
+Say, we want to access an object based on an `id` This should be exactly the same `id` when the object was created and used to identify it uniquely.
 
-For that a `global symbol registry` exists in javascript. This global sysbol registry guarantees that if you access symbol by name, it exactly repeats the same unique identifier rather than new ones unlike below example
+For that a `global symbol registry` exists in javascript. This global symbol registry guarantees that if you access symbol by name, it exactly repeats the same unique identifier rather than new ones unlike below example
 ```js
 let id1 = Symbol('id');
 let id2 = Symbol('id');
@@ -188,7 +210,7 @@ Alternatively, you can symbol's description from symbol value. For example, abov
   let userName = Symbol.for('name');
   console.log(Symbol.keyFor(userID)); // id
   console.log(Symbol.keyFor(userName)); // name
-  
+
 ```
 Please note that `Symbol.keyFor` only works with `global Symbol registry`, it will not work with normal Symbols. Because with normal Symbols, you can create multiple Symbols with same description
 ```js

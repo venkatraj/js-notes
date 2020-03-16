@@ -14,7 +14,7 @@ All comparisons returns boolean value as result
 * If `a > b` returns `false` then it means no `a` is not greater than `b`. Its value is less than `b`
 
 ```js
-console.log( 2 > 1 );  // true 
+console.log( 2 > 1 );  // true
 console.log( 2 == 1 ); // false
 console.log( 2 != 1 ); // true
 ```
@@ -52,7 +52,7 @@ console.log( '01' == 1 ); // true
 console.log( true == 1 ); // true
 console.log( false == 0 ); // true
 ```
-is same as 
+is same as
 ```js
 console.log( Number('2') > 1 ); // true
 console.log( Number('01') == 1 ); // true
@@ -62,7 +62,7 @@ console.log( Number(false) == 0 ); // true
 So this obviously creates a problem when we try to compare things between different data types.
 
 ## Identical or Strict comparison
-When equality and non equality operators fail, we use idential operators
+When equality and non equality operators fail, we use identical operators
 ```js
 console.log( '01' === 1 ); // false
 console.log( true === 1 ); // false

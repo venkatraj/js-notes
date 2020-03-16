@@ -7,6 +7,7 @@ There are two ways to include javascript in a HTML file.
 * External JS file
 
 For both method, we use `script` tag
+https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script
 
 ## Inline JS
 ```html
@@ -33,7 +34,15 @@ If you do this, then inline js code will be ignored and external js will be used
 alert("Hello, World!");
 </script>
 ```
+### Placement of `script` tag
+top => Render blocking js
+bottom => analytics js won't work
+the new `defer` keyword
 
+## No JS Support
+Use <noscript> tag in both `head` and `body` sections
+
+## Old Code
 You may see something like this (code within html comments) in existing website / code base, but it is only for older browsers and no longer needed
 ```html
 <script type="text/javascript"><!--
@@ -51,9 +60,10 @@ alert('Hello, World!');
 </script>
 ```
 
-#### Note 
+
+#### Note
 We will use `console.log` from now onwards and see results in browser console. We will avoid annoying browser popups caused by `alert`
 
-## Exercises 
+## Exercises
 1. Show an alert
 2. Show an alert with an external script

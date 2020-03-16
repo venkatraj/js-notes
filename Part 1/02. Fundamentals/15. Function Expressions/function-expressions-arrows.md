@@ -96,35 +96,3 @@ if (age < 18) {
 // ...use it later
 welcome(); // Error: welcome is not defined
 ```
-## Arrow Functions
-As *function expression*
-```js
-let func = function(arg1, arg2, ...argN) {
-  return expression;
-}
-```
-Same code as arrow function
-```js
-let func => (arg1, arg2, ...argN) = expression;
-```
-Multiline structure
-```js
-let sum = (a, b) = {
-    let result = a + b;
-    return result;
-}
-console.log(sum(10, 15)); // 25
-```
-
-```js
-let sum = (a, b) => a + b; 
-
-let sum = (a, b) => {
-    let result = a + b;
-    return result;
-}
-
-let greeting = () => console.log('Hello, World!');
-
-let greeting = name => console.log(`Hello, ${name}`);
-```

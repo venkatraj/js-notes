@@ -1,5 +1,5 @@
 # Data Types
-There are 7 basic data types in JavaSctipt.
+There are 7 basic data types in JavaScript.
 * Number
 * String
 * Boolean
@@ -14,7 +14,7 @@ Handles both integer and floating point numbers
 let quantity = 10;
 let price = 99.00;
 ```
-It also has `special numberic values` such as `Infinity`,
+It also has `special numeric values` such as `Infinity`,
 `-Infinity` and `NaN`
 
 `Infinity` is equal to mathematical Infinity which means greater than any number. You shouldn't ask what is `-Infinity`, this is javascript.
@@ -76,7 +76,7 @@ Means `nothing`, `empty` and `unknow value`
 
 ## undefined
 Has only one value: `undefined`
-When a variable is declared but not intialized or assigned a value, then it is `undefined`
+When a variable is declared but not initialized or assigned a value, then it is `undefined`
 
 ## Objects & Symbols
 All the above types are primitive types. Objects and Symbols are reference type which we will learn later.
@@ -114,4 +114,3 @@ typeof alert // "function"  (3)
 1. Math is built in object and has several math related functionality
 2. `null` is not an object. It is separate type. This is error in language kept for backward compatibility
 3. `function` is not a data type. All functions are objects, but it returns `function` for convenience.
-

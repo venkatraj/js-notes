@@ -15,8 +15,8 @@ let result = 10 || 20;
 OR operator takes 2 operands and gives a result.
 ```js
 true || true; // true because both are true
-true || false; // true because atleast one is true
-false || true; // true because atleast one is true
+true || false; // true because at least one is true
+false || true; // true because at least one is true
 false || false; // false because both are false
 ```
 
@@ -63,7 +63,7 @@ alert( null || 0 || 1 ); // 1 (the first truthy value)
 alert( undefined || null || 0 ); // 0 (all falsy, returns the last value
 ```
 
-This behaviour is useful when we need a default value. Consider this
+This behavior is useful when we need a default value. Consider this
 ```
 let currentUser = null;
 let defaultUser = "John";

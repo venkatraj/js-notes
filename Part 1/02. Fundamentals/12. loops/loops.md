@@ -7,7 +7,7 @@ Loops runs a block of code certain no. of times or until certain condition is me
 ```js
 while(condition) {
     // loop body
-    // block of code that will run repeteadly until condition becomes false
+    // block of code that will run repeatedly until condition becomes false
 }
 ```
 
@@ -33,10 +33,10 @@ For single statements, curly braces is not needed. But it is best practice to al
 
 
 ## The `do...while` loop
-While `while` loop start executing when the condition is true, this structure will excute atleast once and will continue only if condition is true
+While `while` loop start executing when the condition is true, this structure will execute at least once and will continue only if condition is true
 ```js
 do {
-    // This block of code will be executed once regarless of condition's outcome
+    // This block of code will be executed once regardless of condition's outcome
 } while (condition)
 ```
 
@@ -58,7 +58,7 @@ do {
 For example, if we want to go through week days, we know that we need to loop through for 7 times.
 For months, it will be 12 times and so on. For such tasks, we use `for` loops
 
-**Sytax**
+**Syntax**
 ```js
 for (begin; condition; step) {
   // ... loop body ...
@@ -106,14 +106,31 @@ for(let i = 0; i < 10; i++) {
 }
 ```
 
-For example, you write a program that gets your visitors favourite number and then prints only even numbers until his favourite number. Let us do this.
+For example, you write a program that gets your visitors favorite number and then prints only even numbers until his favorite number. Let us do this.
 ```js
-let favourite_number = +prompt('Enter your favourite number');
+let favorite_number = +prompt('Enter your favorite number');
 let i = 0;
-while(!isNaN(favourite_number)) {
+while(!isNaN(favorite_number)) {
     i++;
-    if (i > favourite_number) break;
+    if (i > favorite_number) break;
     if (i%2 != 0) continue;
     console.log(i);
 }
 ```
+
+## Labels
+Since, break/continue can only work for the loop which is in, 
+We can also use labels to continue/break out of nested loops
+```js
+outer: 
+for (let i = 0; i < 3; i++) {
+  for (let j = 0; j < 3; j++) {
+    let input = prompt(`Value at coords (${i},${j})`, '');
+    // if an empty string or canceled, then break out of both loops
+    if (!input) break outer; // (*)
+    // do something with the value...
+  }
+}
+alert('Done!');
+```
+

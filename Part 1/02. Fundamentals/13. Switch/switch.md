@@ -60,6 +60,8 @@ switch(day) {
 }
 ```
 
+We can use expressions as `case`
+
 ```js
 let a = "1";
 let b = 0;
@@ -73,6 +75,8 @@ switch (+a) { // + type cast "1" to number 1
     alert("this doesn't run");
 }
 ```
+
+Switch case always check for equality strictly
 
 ```js
 let arg = prompt("Enter a value?");
