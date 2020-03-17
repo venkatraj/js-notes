@@ -1,5 +1,18 @@
-# Map, Set WeakMap and WeakSet
+# Map and Set
+## Map
 Map is a collection of keyed data items, just like an Object. But the main difference is that Map allows keys of any type.
+
+new Map() – creates the map.
+map.set(key, value) – stores the value by the key.
+map.get(key) – returns the value by the key, undefined if key doesn’t exist in map.
+map.has(key) – returns true if the key exists, false otherwise.
+map.delete(key) – removes the value by the key.
+map.clear() – removes everything from the map.
+map.size – returns the current element count.
+
+## Map[key]
+Though will work, we shouldn't use square bracket syntax for accessing map elements
+
 
 ```js
 
@@ -42,8 +55,10 @@ Map is a collection of keyed data items, just like an Object. But the main diffe
     .set('Compensation','Moderate')
 
   console.log(user);
-
 ```
+
+# Map key comparison
+It uses `SameValueZero` algorithm which is roughly equal to `===` comparison. Difference is `NaN === NaN` returns false where as `SameValueZero` returns true. So NaN can be used as the key as well.
 
 ## Map from arrays
 ```js
@@ -123,6 +138,8 @@ Map is a collection of keyed data items, just like an Object. But the main diffe
 ```
 
 ## Set
+A Set is a collection, a set of unique values
+
 ```js
 
   let set = new Set();
@@ -140,7 +157,7 @@ Map is a collection of keyed data items, just like an Object. But the main diffe
 
   console.log(set.size); // 3
   console.log(set.has(john)); // true
-  console.log(set.delete(john)); // returns true delete's john
+  console.log(set.delete(john)); // returns true deletes  john
   console.log(set.size); // 2
   set.clear(); // Removes all values
   console.log(set.size); // 0
@@ -181,63 +198,3 @@ To make it compatible with Map, Set also has three iterable methods
 
 ```
 
-## WeakSet and WeakMap
-In `Set` and `Map`, if you use an object as key/value and then the object is not reachable, the stored item is unaffected.
-```js
-
-  let myWeakMap = new WeakMap();
-  let user = {name: 'John'};
-  myWeakMap.set(user, 'Hey, John');
-
-  // TypeError: WeakMap key must be an object, got the string "Venkat"
-  myWeakMap.set('Venkat', 'Hey, Venkat'); 
-
-```
-
-```js
-
-let john = { name: "John" };
-
-let map = new Map();
-map.set(john, "...");
-
-john = null; // overwrite the reference
-
-// john is still stored inside the map
-map.size; // 1
-
-
-let john = { name: "John" };
-
-let weakMap = new WeakMap();
-weakMap.set(john, "...");
-
-john = null; // overwrite the reference
-// john is removed from memory!
-```
-
-Excercises
-```js
-
-function unique(arr) {
-  return Array.from(new Set(arr));
-}
-
-let strs = ["Hare", "Krishna", "Hare", "Krishna", "Krishna", "Krishna", "Hare", "Hare", ":-O"];
-
-alert( unique(strs) ); // Hare, Krishna, :-O
-
-function aclean(arr) {
-  let mySet = new Set();
-  arr.forEach(item => {
-    let itemArr = Array.from(item).sort();
-    mySet.add(itemArr.join(''))
-  });
-  return Array.from(mySet);
-}
-let arr = ["nap", "teachers", "cheaters", "pan", "ear", "era", "hectares"];
-
-alert( aclean(arr) ); // ["anp", "aceehrst", "aer"]
-// This is wrong, words should still has same letter order
-
-```

@@ -7,7 +7,7 @@ There are 3 types of quotes
 * Single Quote
 * Double Quote
 * Backticks
-There is no difference between single and double quotes. You can choose whatever you prefer. In practice, if there is single quotes in the lieterals then double quote is choosed and vice versa.
+There is no difference between single and double quotes. You can choose whatever you prefer. In practice, if there is single quotes in the literals then double quote is chosen and vice versa.
 
 ```js
 
@@ -188,7 +188,7 @@ To find out whether the substring "World!" is present in "Hello, World!" or not,
 ```js
 
     let greeting = "Hello, World!";
-    console.log(greeting.indexOf('World!')); // 7 because 'W' is at possion 7
+    console.log(greeting.indexOf('World!')); // 7 because 'W' is at position 7
     console.log(greeting.indexOf('world!')); // -1 because indexOf is case sensitive
     console.log(greeting.indexOf('World!', 8)); 
     // -1 because search starts at position 7 and there is no 'World!' beyond it
@@ -337,7 +337,7 @@ Returns specific no. of characters from specified position
 ```
 
 ## Comparing strings
-When comparing string we know that `a` is greater than `A`. This happens because the comparision actually take place between character code not between character
+When comparing string we know that `a` is greater than `A`. This happens because the comparison actually take place between character code not between character
 
 ```js
 
@@ -375,7 +375,7 @@ You could create a single character or string from character code(s)
 
 ## str.localeCompare(str)
 
-Since the character code change `a` comes after `A` and in many languages the character codes different and making string comparision non obvious. `localeCompare` method helps to solve it (for IE10, you need Intl.js)
+Since the character code change `a` comes after `A` and in many languages the character codes different and making string comparison non obvious. `localeCompare` method helps to solve it (for IE10, you need Intl.js)
 
 **str.localeCompare(str2)**
 * Returns `1` if `str` is greater than `str2`
@@ -388,8 +388,8 @@ Since the character code change `a` comes after `A` and in many languages the ch
 
 ```
 
-Excercises:
-Write a function ucFirst(str) that returns the string str with the uppercased first character, for instance:
+Exercises:
+Write a function ucFirst(str) that returns the string str with the uppercase first character, for instance:
 ```js
 ucFirst('john') == 'John';
 

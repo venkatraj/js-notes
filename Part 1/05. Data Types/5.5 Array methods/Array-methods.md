@@ -21,7 +21,7 @@ But `delete` only removes value and set it to `undefined` and will not reduce ar
 
 ```
 
-So we need a method to delete array itesm. `splice` comes to rescue. In fact, this powerful method can add, remove and insert elements.
+So we need a method to delete array items. `splice` comes to rescue. In fact, this powerful method can add, remove and insert elements.
 Syntax is `arr.splice(index[, deleteCount, ele1, ele2, ..., eleN])`
 * `index` - Starting position
 * `deleteCount` - No. of elements to delete. 0 if you want to insert
@@ -303,3 +303,70 @@ The difference is `map` returns a new modified array, where as forEach returns `
     });
 
     console.log(modifiedArr); // [2,4,6,8,10]
+
+
+```
+
+## Reduce, reduceRight
+```js
+let value = arr.reduce(function(accumulator, item, index, array) {
+  // ...
+}, [initial]);
+
+
+let arr = [1, 2, 3, 4, 5];
+let result = arr.reduce((sum, current) => sum + current, 0);
+console.log(result); // 15
+```
+
+## Array.isArray
+
+```js
+console.log(typeof {}); // object
+console.log(typeof []); // same
+
+console.log(Array.isArray({})); // false
+console.log(Array.isArray([])); // true
+```
+
+## Most methods support “thisArg”
+Except `sort`
+
+```js
+
+arr.find(func, thisArg);
+arr.filter(func, thisArg);
+arr.map(func, thisArg);
+// ...
+// thisArg is the optional last argument
+
+
+
+
+let army = {
+  minAge: 18,
+  maxAge: 27,
+  canJoin(user) {
+    return user.age >= this.minAge && user.age < this.maxAge;
+  }
+};
+
+let users = [
+  {age: 16},
+  {age: 20},
+  {age: 23},
+  {age: 30}
+];
+
+// find users, for who army.canJoin returns true
+let soldiers = users.filter(army.canJoin, army);
+
+alert(soldiers.length); // 2
+alert(soldiers[0].age); // 20
+alert(soldiers[1].age); // 23
+
+
+// OR you could write
+
+let soldiers = user.filter(user => army.canJoin(user));
+```

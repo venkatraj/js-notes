@@ -1,5 +1,5 @@
 # Iterables
-Iterables can be any object that is useable in a `for..of` lop.
+Iterables can be any object that is useable in a `for..of` loop.
 ## Symbol.iterator
 Let's look at an example.
 ```js
@@ -9,16 +9,18 @@ Let's look at an example.
     to: 5
   };
 
-  // Pseduo code
+  // Pseudo code
   for(num of range) {
     console.log(num); // 1,2,3,4,5
   }
 
 ```
 If the above code run successfully, then range object is iterable. But we will get an error
-`TypeError: range is not iterable` To make it iterable, it (`range`) should return an object with `next` method that returns a `{done: Boolean, value: any}` format.
+`TypeError: range is not iterable` To make it iterable, it (`range`) should return an iterator object. An iterator is an object with `next` method that returns a `{done: Boolean, value: any}` format. 
 
-In other words, with every iteration in `for..of`, the range should call `next` and return an object in `{done: boolean, value: any}` format. When `done: false` the `for..of` knows that the iteration is not over and takes the next value. When `done: true` the `for..of` knows that the iteration is over and exists loop.
+In Javascript, `for..of` loop, it looks for `[Symbol.iterator]` method which should return an iterator.
+
+In other words, first call of `for..of` invokes `[Symbol.iterator]` method and gets an iterator object and subsequent calls of `for..of`, it uses `next` method which returns an object in `{done: boolean, value: any}` format. When `done: false` the `for..of` knows that the iteration is not over and takes the next value. When `done: true` the `for..of` knows that the iteration is over and exists loop.
 
 Let us see the above explanation in code.
 
@@ -48,7 +50,39 @@ Let us see the above explanation in code.
 
 ```
 
-Here, `range` object has a method `Symbol.iterator` which return the essential object with `next` method. In that object, we store, `from` and `to` values in its own properties and `next` method checks whether the range is completed or not. Depends on it, it returns an object in the `{done: boolean, value: any}` format
+Here, `range` object has a method named `Symbol.iterator` which return the essential iterator object with `next` method. In that object, we store, `from` and `to` values in its own properties and `next` method checks whether the range is completed or not. Depends on it, it returns an object in the `{done: boolean, value: any}` format.
+
+If you are a `Python` fan boy, you could do this
+```js
+    let range = (from, to, step) => {
+      return {
+        from,
+        to,
+        step,
+
+        [Symbol.iterator]() {
+          return {
+            current: this.from,
+            last: this.to,
+            step: this.step,
+            next() {
+              if (this.current <= this.last) {
+                let val = this.current
+                this.current += this.step
+                return { done: false, value: val };
+              } else {
+                return { done: true };
+              }
+            }
+          }
+        },
+      };
+    };
+
+    for (let num of range(1, 10, 2)) {
+      console.log(num);
+    }
+```
 
 **Strings** are iterables and it works well for surrogate paris as well.
 ```js
@@ -84,7 +118,7 @@ This is rarely needed. We call built-in iterator explicitly and stores the retur
 # Iterables and array-likes
 These two are different, though arrays are iterables too
 
-* `Iterables` has built in `Symbo.iterator` method
+* `Iterables` has built in `Symbol.iterator` method
 * Array-likes has numeric indexes and length
 
 Important thing to note is that, Array likes can be iterables and vice versa. But is not necessary that every array like is iterables or every iterables is array like.
@@ -92,7 +126,7 @@ Important thing to note is that, Array likes can be iterables and vice versa. Bu
 In other words, strings are array-like and also iterables. However, the earlier iterable we have seen `range` is not array like, but it is still iterable.
 
 ## Array.from
-Array like objects are not arrays, so method like `push, pop` is not available with them. To make such objects to work really like array, we have `Array.from`
+Array like objects and iterables are not arrays, so method like `push, pop` is not available with them. To make such objects to work really like array, we have `Array.from`
 ```js
 
   let arrLike = {
@@ -160,27 +194,4 @@ This can be remedied by using `Array.from` to turn string into an array
   console.log(chars.length); // 2
 
 ```
-
-```js
-function sum(a, b, c) {
-  return a + b + c;
-}
-
-function curry(func) {
-  return function curried(...args) {
-    if (args.length >= func.length) {
-      return func.apply(this, args);
-    } else {
-      return function(...args2) {
-        return curried.apply(this, args.concat(args2));
-      }
-    }
-  }
-}
-
-let curriedSum = curry(sum);
-
-curriedSum(1);
-curriedSum(1, 2)(3);
-curriedSum(1)(2,3);
 

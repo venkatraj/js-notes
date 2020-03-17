@@ -35,8 +35,8 @@ You can also create a date with date string, but it should be recognizable with 
 
 ```
 
-You can also create date, if you know the year, month and date and hours/mininutes/seconds and milliseconds.
-If date is missing then 1 is assumed, for time all paramters have default value 0.
+You can also create date, if you know the year, month and date and hours/minutes/seconds and milliseconds.
+If date is missing then 1 is assumed, for time all parameters have default value 0.
 **PS:** month starts with 0 and december is 11
 
 ```js
@@ -52,3 +52,9 @@ If date is missing then 1 is assumed, for time all paramters have default value 
     console.log(newYear);
 
 ```
+
+Refer: https://javascript.info/date
+and https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
+
+You don't need to memories or learn it now. Get back to it when you work with date
+

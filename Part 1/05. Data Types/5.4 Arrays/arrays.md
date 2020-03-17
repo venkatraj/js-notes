@@ -185,7 +185,7 @@ If you knew `php`, `for` loop is same. `for..of` is like foreach($array as $valu
 
 ```
 
-### Length is writtable property
+### Length is writable property
 
 ```js
 
@@ -205,7 +205,7 @@ If you knew `php`, `for` loop is same. `for..of` is like foreach($array as $valu
 
 ```
 
-## Multidimentional arrays
+## Multidimensional arrays
 
 ```js
 
@@ -220,7 +220,8 @@ If you knew `php`, `for` loop is same. `for..of` is like foreach($array as $valu
 ```
 
 ## toString
-Arrays have their own implementation of toString method that returns a comma-separated list of elements.
+Arrays have their own implementation of toString method that returns a comma-separated list of elements. It doesn't have `Symbol.toPrimitive` or `valueOf` methods
+
 ```js
 
     let arr = [1, 2, 3];

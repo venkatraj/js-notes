@@ -319,7 +319,7 @@ But having value of object `{number: 23}` for `room` property doesn't make any s
     let obj = JSON.parse(str[, reviver]);
 
   ```
-  Here the stringied object is first argument and mapping function is 2nd argumnet, if needed.
+  Here the stringified object is first argument and mapping function is 2nd argument, if needed.
   ### str
   JSON string to parse
   ### reviver
@@ -381,7 +381,7 @@ If we are to write handwritten JSON for debugging purpose, we should be careful 
 And comments are not allowed and it makes json invalid (`data-only`)
 
 
-## riviver
+## reviver
 make this work
 ```js
 

@@ -1,8 +1,8 @@
-# Destructring asssingments
-Arrays and Objects hold many information as single entity. It is sometimes useful to have those informations in separate variables. Destructring assignemnt is the way to `unpack` arrays or objects into a bunch of variables.
+# Destructuring assignments
+Arrays and Objects hold many information as single entity. It is sometimes useful to have those information in separate variables. Destructuring assignment is the way to `unpack` arrays or objects into a bunch of variables.
 
-## Array destructring
-To destructre an array you'll write code like so,
+## Array destructuring
+To destructuring an array you'll write code like so,
 
 ```js
 
@@ -13,7 +13,7 @@ To destructre an array you'll write code like so,
 
 ```
 
-To destructure a string you'll write code like so..
+It works with array returning methods as well. To destructuring a string you'll write code like so..
 
 ```js
 
@@ -26,7 +26,7 @@ To destructure a string you'll write code like so..
 
 ### “Destructuring” does not mean “destructive”
 Meaning that by doing destructuring assignments, the array or string itself won't change.
-This is just a shorter method
+This is just a shorter method for following code
 
 ```js
 
@@ -92,7 +92,7 @@ For instance, an object property:
 ```
 
 ## The rest `...`
-As we saw, we can ignore first items with commas, similarly you can grap all the rest of the variables in a single variable as array
+As we saw, we can ignore first items with commas, similarly you can grasp all the rest of the elements / properties in a single variable as array
 ```js
 
     let arr = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
@@ -132,7 +132,7 @@ Expressions will be executed only if there is no value in array
 **Syntax** is
 ```js
 
-    let {var1, var2} = {prop1: value1, prop2, value2};
+    let {var1, var2} = {prop1: value1, prop2: value2};
 
 ```
 
@@ -155,7 +155,7 @@ Expressions will be executed only if there is no value in array
 
 ```
 
-### Proper mapping
+### Property mapping
 ```js
 
     let options = {
@@ -220,7 +220,7 @@ Expressions will be executed only if there is no value in array
 
 ```
 
-## The rest operator
+## The rest pattern '...'
 
 ```js
     
@@ -258,8 +258,8 @@ So, you need to tell JS engine, it is not block of code. You can do so, like so.
 
 ```
 
-## Nested destructure
-We can also destructure nested objects and arrays.
+## Nested destructuring
+We can also destructuring nested objects and arrays.
 
 ```js
 
@@ -295,7 +295,7 @@ We can also destructure nested objects and arrays.
 
 ```
 
-## Destructuring in function paramter
+## Destructuring in function parameter
 ```js
 
     // we pass object to function
@@ -316,7 +316,7 @@ We can also destructure nested objects and arrays.
 
 ```
 
-**Write a function with destructure with mapping parameter**
+**Write a function with destructuring with mapping parameter**
 ```js
 
     let options = {
@@ -337,9 +337,14 @@ We can also destructure nested objects and arrays.
 
     showMenu(options);
 
+    // syntax
+    function({
+        incomingProperty: varName = defaultValue
+    })
+
 ```
 
-Optional destructring parameter
+Optional destructuring parameter
 ```js
 
     function showMenu({ title = "Menu", width = 100, height = 200 } = {}) {
@@ -353,3 +358,46 @@ Optional destructring parameter
     }
 
     showMenu(); // Menu 100 200
+
+```
+
+## Exercises
+
+### Destructuring assignment
+
+```js
+let user = { name: "John", years: 30 };
+
+// your code to the left side: (SOLUTION)
+let { name, years: age, isAdmin = false } = user
+
+console.log( name ); // John
+console.log( age ); // 30
+console.log( isAdmin ); // false
+
+```
+
+### The maximal salary
+```js
+let salaries = {
+  "John": 100,
+  "Pete": 300,
+  "Mary": 250
+};
+
+console.log(topSalary(salaries))
+
+function topSalary(salaries) {
+    if (0 === Object.keys(salaries).length) return null;
+    let topSalary = 0,
+        topPaidPerson = '';
+    for (let [person, salary] of Object.entries(salaries) ) {
+        if (salary > topSalary) {
+            topSalary = salary;
+            topPaidPerson = person;
+        }
+    }
+
+    return topPaidPerson;
+}
+```

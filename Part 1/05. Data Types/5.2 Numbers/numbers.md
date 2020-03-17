@@ -8,7 +8,7 @@ We want to store (1000000) ten lakh in a variable, it is hard to type and track 
 
 ```
 
-Basically, exponential form works like this. It multiply the number that preceeds `e` with 1 and no. of zeros. In the above example 1 is multiplied by 1 and 6 zeros (1000000)
+Basically, exponential form works like this. It multiply the number that precedes `e` with 1 and no. of zeros. In the above example 1 is multiplied by 1 and 6 zeros (1000000)
 
 Let us say we need to represent 23 lakhs and 9500 rupees, we could write like this
 ```js
@@ -18,7 +18,7 @@ Let us say we need to represent 23 lakhs and 9500 rupees, we could write like th
 
 ```
 
-If we want to represent very small numbers, we could use negative exponential form. This basically divides the number that preceeds `e` by 1 and give no. of zeros. Let us say, we want to represent one microsecond in the form of seconds, because other data are in seconds.
+If we want to represent very small numbers, we could use negative exponential form. This basically divides the number that precedes `e` by 1 and give no. of zeros. Let us say, we want to represent one microsecond in the form of seconds, because other data are in seconds.
 
 In one second there is one million micro seconds. i.e. 1 / 1000000 = 0.000001;
 To represent this we can write like this
@@ -51,7 +51,7 @@ To represent 255 you would write like this
 
 ```
 
-For octals, no. will preceed with `0o` and for binaries it is `0b`
+For octals, no. will precede with `0o` and for binaries it is `0b`
 ```js
 
   let octal_255 = 0o377;
@@ -78,7 +78,7 @@ The method `toString(base)` returns a number in given format as string.
 
 ```
 
-There is also support for base36. Though I can't find the use case for numbers, it can be used to  encode strings like so
+There is also support for base36. Though I can't find the use case for numbers, it can be used to encode strings like so
 ```js
 
   function encode(str) {
@@ -209,7 +209,7 @@ The less obvious thing is that it losses precision when doing floating point cal
 
 This happens because of how the number is represented internall. Please note that this is not specific to Javascript but also happens in languages like `PHP, Java, C, Perl, Ruby` because they too use same `IEEE-754` number system.
 
-To fix issues like `0.1 + 0.2 = 0.30000000000000004`, we can use `toFixed()` method. But please note that this returns a string and you have to convert to integer explicitily
+To fix issues like `0.1 + 0.2 = 0.30000000000000004`, we can use `toFixed()` method. But please note that this returns a string and you have to convert to integer explicitly
 ```js
 
   (0.1 + 0.2).toFixed(2); // "0.30" string

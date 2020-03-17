@@ -23,7 +23,7 @@ user.sayHi = function() {
 user.sayHi(); // hello
 ```
 
-As object litral
+As object literal
 ```js
 let user = {
   name: 'John Doe',

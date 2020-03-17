@@ -32,6 +32,12 @@ Like the above code, though it is possible, it is not recommended to use Primiti
     alert( "zero is truthy?!?" );
   }
 
+  const falseObj = new Boolean(false);
+
+  if (falseObj) {
+    console.log("Objects are always truthy!");
+  }
+
 ```
 
 It is perfectly safe and recommended to use it as type casting functions rather than Constructors
