@@ -37,8 +37,8 @@ Here you are calling the same function again and again by decrementing no. of ti
 To really understand how recursive calls work, we need to understand *execution context*
 
 `Execution context` is a internal data structure used by JS Engine to hold details of program execution.
-Each scope creates a execution content. In our case, our function `power` creates a exection context.
-Execution context holds informations such as where the control flow is, available variables, value of `this`, and few other internal details
+Each scope creates a execution content. In our case, our function `power` creates a execution context.
+Execution context holds information such as where the control flow is, available variables, value of `this`, and few other internal details
 
 Each function call creates one execution context, and this is what happening when making nested calls
 1. Current function is paused.
@@ -56,9 +56,9 @@ At line 2 it becomes 2 * 2 * 2 * 2
 From the above example, you may wonder that why we need recursion, when looping solution is simple to understand and read, even though it is bit longer than the short, but complex recursive solution.
 
 ## Recursive traversal
-Let us consider where actually recursive can come in handy. Say we have a company and has multiple departments and staff. Some departments may have sub departments and which in turn may have sub sub departments. Or take a most obvious example, our computers folder and file strucure. Our hard disk root may contains files and folders. Folders in turn can contain sub folders and files and so on.
+Let us consider where actually recursive can come in handy. Say we have a company and has multiple departments and staff. Some departments may have sub departments and which in turn may have sub sub departments. Or take a most obvious example, our computers folder and file structure. Our hard disk root may contains files and folders. Folders in turn can contain sub folders and files and so on.
 
-We can't really loop through these things as we don't have a finite structure. Looping can become incredibly complex when you don't know the strucutre.
+We can't really loop through these things as we don't have a finite structure. Looping can become incredibly complex when you don't know the structure.
 
 Here recursion comes in handy. Our recursive function should check whether they are folders or just files. If files, it should just return it and if folders, it should call itself to further check, if it has just files or folders and so on.
 
@@ -132,7 +132,7 @@ Adding and deleting
     list.next.next = { value: 3 };
     list.next.next.next = { value: 4 };
 
-    // prepend the new value to the list
+    // prepends the new value to the list
     list = { value: "new item", next: list };
 
     // Delete '3'

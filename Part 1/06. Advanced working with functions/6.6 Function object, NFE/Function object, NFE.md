@@ -70,8 +70,9 @@ Functions has another built-in propety `length` which returns the no. of argumen
   console.log(many.length); // 2
 
 ```
-`rest` parameter is counted as ONE.
-This can be used to replicate `polymomorphism` in javascript. In below example, the functions called depends on its length (no. of arguments). If there is positive response (ok), then both handlers are called. For negative response (cancel) only the second handler is called.
+`rest` parameter is NOT counted.
+
+This can be used to replicate `polymorphism` in javascript. In below example, the functions called depends on its length (no. of arguments). If there is positive response (ok), then both handlers are called. For negative response (cancel) only the second handler is called.
 
 ```js
 
@@ -112,6 +113,8 @@ We can add our own properties to functions
   console.log( `Called ${sayHi.counter} times` ); // Called 2 times
 
 ```
+*NOTE*: function properties and variables declared inside of a function are totally different things. They have no relationship.
+
 You can use function properties as an alternative to closure.
 ```js
 
@@ -133,7 +136,7 @@ You can use function properties as an alternative to closure.
   console.log( counter() ); // 1
 
 ```
-The difference is in clouser, the `count` live in outer Lexical Environments where as property live in itself. With closure, `count` can't be modified by outer code. Only nested functions can modify it. But with properties it is possible
+The difference is in closure, the `count` live in outer Lexical Environments where as property live in itself. With closure, `count` can't be modified by outer code. Only nested functions can modify it. But with properties it is possible
 ```js
 
   function makeCounter() {
@@ -156,8 +159,8 @@ The difference is in clouser, the `count` live in outer Lexical Environments whe
 So the choice of use is depends on context.
 
 ## Named function expression
-Also called NFE is a function experssion with a name.
-Here we assign an anoymous function to a variable
+Also called NFE is a function expression with a name.
+Here we assign an anonymous function to a variable
 ```js
 
   // Function expression
@@ -177,7 +180,7 @@ let sayHi = function func(who) {
   console.log(`Hello, ${who}`);
 };
 ```
-Another advantage of using NFE is that you can call the function itself (recurive call). Consider the following examples.
+Another advantage of using NFE is that you can call the function itself (recursive call). Consider the following examples.
 ```js
 let sayHi = function func(who) {
   if (who) {
@@ -232,3 +235,62 @@ welcome(); // Hello, Guest (nested call works)
 
 ```
 
+## Exercises
+
+### Set and decrease the counter
+```js
+function makeCounter() {
+      function counter() {
+        console.log(counter.count++)
+      }
+      counter.count = 0;
+
+      counter.set = function (value) {
+        counter.count = value;
+      }
+
+      counter.decrease = function () {
+        counter.count--;
+      }
+
+      return counter;
+
+    }
+
+
+    let myCounter = makeCounter();
+
+    myCounter()   // Displays 0, increments to 1
+    myCounter()  // Displays 1, increments to 2
+    myCounter.set(5) // Sets to 5
+    myCounter() // Displays 5, increments to 6
+    myCounter.decrease() // Decrements to 5
+    myCounter.decrease() // Decrements to 4
+    myCounter() // Displays 4, increments to 5
+```
+
+
+### Sum with an arbitrary amount of brackets
+```js
+// sum(1)(2) == 3; // 1 + 2
+// sum(1)(2)(3) == 6; // 1 + 2 + 3
+// sum(5)(-1)(2) == 6
+// sum(6)(-1)(-2)(-3) == 0
+// sum(0)(1)(2)(3)(4)(5) == 15
+
+function sum(a) {
+  currentSum = a;
+
+  function f(b) {
+    currentSum += b;
+    return f;
+  }
+
+  f.toString = function() {
+      return currentSum;
+  };
+
+  return f;
+}
+console.log(String(sum(5)(-1)(2)))
+```

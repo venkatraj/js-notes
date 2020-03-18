@@ -13,7 +13,7 @@ Example:
     let sum = new Function('a', 'b', 'return a + b');
     console.log(sum(1, 2));
 
-    let hello = new Function("alert('Hello')");
+    let hello = new Function("alert('Hello')"); // implicit return when only has function body
     hello();
 
 ```
@@ -34,7 +34,7 @@ Is exactly same as
 
 ```
 
-What is the benefit of new Function syntax?
+What is the benefit of using `new` Function syntax?
 You can receive function as string from server and then execute it
 ```js
 
@@ -67,4 +67,6 @@ Consider this
 
 ```
 
-This will output "Hi" instead of "Hello". In fact, if there is no `value` in global, then it will through reference error
+This will output "Hi" instead of "Hello". In fact, if there is no `value` in global, then it will through reference error.
+
+Why this behavior? Because when we get function body from server or other source, it should be generic and reusable and it shouldn't be aware of local variables. Otherwise, we can write our own in the current scope itself.

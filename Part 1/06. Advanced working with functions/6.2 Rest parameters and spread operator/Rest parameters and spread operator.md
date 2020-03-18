@@ -1,12 +1,12 @@
 # Rest parameters and spread operator
-Many built in JS method support arbitary number of arguments.
+Many built in JS method support arbitrary number of arguments.
 ```js
 
     Math.min(val1, val2, val3, valX)
     Object.assign(src, obj1, obj2, ... objX);
 
 ```
-`Math.min` returns minimum value amoung the supplied parameters and `Object.assgin` copies supplied objects into `src` obj
+`Math.min` returns minimum value among the supplied parameters and `Object.assign` copies supplied objects into `src` obj
 Like these methods, we can also make our function to behave as such
 
 To conclude, JS functions don't have signatures. Meaning that, you can call function with more or less parameters than in its declaration
@@ -42,7 +42,7 @@ We can rewrite our sum function to make use of remaining parameters using `argum
 
 ```
 
-`arguments` object is an array-like object and also an iterable. But it is not an array. So, we can't use mapping functions on parameters. And we can't have few parameters as variables and rest as object. So when you do need such features, you can use `...rest` paramters
+`arguments` object is an array-like object and also an iterable. But it is not an array. So, we can't use mapping functions on parameters. And we can't have few parameters as variables and rest as object. So when you do need such features, you can use `...rest` parameters
 
 ```js
 

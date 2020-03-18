@@ -109,3 +109,106 @@
   alert( bound.test ); // what will be the output? why?
 
 ```
+
+## Partial Functions
+We can not only bind context, but can also bind arguments to fixed value.
+
+```js
+function mul(a, b) {
+  return a * b;
+}
+
+let double = mul.bind(null, 2);
+
+alert( double(3) ); // = mul(2, 3) = 6
+alert( double(4) ); // = mul(2, 4) = 8
+alert( double(5) ); // = mul(2, 5) = 10
+```
+
+This is called `partial function application` (in Comp. Sci.) – we create a new function by fi
+
+## Going partial without context
+
+```js
+function partial(func, ...argsBound) {
+  return function(...args) { // (*)
+    return func.call(this, ...argsBound, ...args);
+  }
+}
+
+// Usage:
+let user = {
+  firstName: "John",
+  say(time, phrase) {
+    alert(`[${time}] ${this.firstName}: ${phrase}!`);
+  }
+};
+
+// add a partial method with fixed time
+user.sayNow = partial(user.say, new Date().getHours() + ':' + new Date().getMinutes());
+
+user.sayNow("Hello");
+// Something like:
+// [10:00] John: Hello
+```
+
+## Exercises
+
+### Bound function as a method
+What will be the ouput?
+```js
+function f() {
+  alert( this ); // ?
+}
+
+let user = {
+  g: f.bind(null)
+};
+
+user.g();
+
+// In normal mode, window
+// In strict mode, null
+```
+
+### Second bind
+Can we change this by additional binding?
+What will be the output?
+```js
+function f() {
+  alert(this.name);
+}
+
+f = f.bind( {name: "John"} ).bind( {name: "Ann" } );
+
+f();
+
+
+// NO, no rebound 
+// Output: John
+```
+
+### Fix a function that loses "this"
+
+```js
+function askPassword(ok, fail) {
+  let password = prompt("Password?", '');
+  if (password == "rockstar") ok();
+  else fail();
+}
+
+let user = {
+  name: 'John',
+
+  loginOk() {
+    alert(`${this.name} logged in`);
+  },
+
+  loginFail() {
+    alert(`${this.name} failed to log in`);
+  },
+
+};
+
+askPassword(user.loginOk, user.loginFail);
+```

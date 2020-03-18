@@ -1,6 +1,6 @@
 # Scheduling: setTimeout and setInterval
 We may decide to execute a function not right now, but at a certain time later. That’s called “scheduling a call”.
-For example, we may not want to execute a callback function immediately that is attached to a keypress. Because we don't know whether they have entered whole it put or not. So we may want to delay the execution for few microseconds to make sure that typing has been done and complete
+For example, we may not want to execute a callback function immediately that is attached to a keypress. Because we don't know whether they have entered whole input or not. So we may want to delay the execution for few microseconds to make sure that typing has been done and completed
 
 There are two type of scheduling
 1. One Time
@@ -54,9 +54,9 @@ We may schedule a call, but based on certain conditions (result of data processi
     function sayHi(phrase, who) {
         alert( phrase + ', ' + who );
     }
-    setTimeout(sayHi, 1000, gettting, name);
+    setTimeout(sayHi, 1000, greeting, name);
 
-    // We want to call the execution, if either greeting or name is undefined
+    // We want to cancel the execution, if either greeting or name is undefined
 
     var [greeting, name] = // result of something, a server call
     function sayHi(phrase, who) {
@@ -65,7 +65,7 @@ We may schedule a call, but based on certain conditions (result of data processi
     let timerID = setTimeout(sayHi, 1000, greeting, name);
 
     if ("undefined" === typeof greeting || "undefined" === typeof name) {
-        clearTimeout(timeID);
+        clearTimeout(timerID);
     }
 
 ```
@@ -147,4 +147,46 @@ What happens with the following code?
 
 ```
 
-Even though there is `0` delay to execute the arrow function, it will execute only after the current code.
+Even though there is `0` delay to execute the arrow function, it will execute only after the current code. More on this when we learn `Event Loop`
+
+### Zero delay is in fact not zero (in a browser)
+The HTML5 standard says: “after five nested timers, the interval is forced to be at least 4 milliseconds.”.
+
+```js
+let start = Date.now();
+let times = [];
+
+setTimeout(function run() {
+  times.push(Date.now() - start); // remember delay from the previous call
+
+  if (start + 100 < Date.now()) alert(times); // show the delays after 100ms
+  else setTimeout(run); // else re-schedule
+});
+
+// an example of the output:
+// 1,1,1,1,9,15,20,24,30,35,40,45,50,55,59,64,70,75,80,85,90,95,100
+```
+
+## Exercises
+
+### Output every second
+Write a function printNumbers(from, to) that outputs a number every second, starting from from and ending with to.
+
+```js
+function printNumber(from, to) {
+    let innerTimerID;
+    let timerID = setTimeout(function tick() {
+    clearTimeout(innerTimerID)
+    innerTimerID = setTimeout(tick, 1000)
+    if (from <= to) {
+        console.log(from++)
+    } else {
+        clearTimeout(timerID)
+        clearTimeout(innerTimerID)
+        console.log('Stopped!')
+    }
+    }, 1000)
+}
+
+printNumber(1,5)
+```
