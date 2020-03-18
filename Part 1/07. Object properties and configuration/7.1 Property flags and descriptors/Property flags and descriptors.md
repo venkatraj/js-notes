@@ -1,7 +1,7 @@
 # Property flags and descriptors
 So far we knew that an object property is a `key-value` pair. But the fact is that a property has four attributes namely `configurable, enumerable, value and writable`.
 
-It is like a property key itself is an object and has four properties
+It is like a property key itself is an object and has four properties (flags)
 ```js
 
   let user = {
@@ -46,7 +46,7 @@ let user = {
 
 let descriptor = Object.getOwnPropertyDescriptor(user, 'name');
 
-alert( JSON.stringify(descriptor, null, 2 ) );
+console.log( JSON.stringify(descriptor, null, 2 ) );
 /* property descriptor:
 {
   "value": "John",
@@ -102,7 +102,7 @@ It syntax is
 
 ```
 
-## No redefining of configurable property flat
+## No redefining of configurable property flag
 
 ```js
 
@@ -196,8 +196,8 @@ Real life example
   let nameDescriptor = Object.getOwnPropertyDescriptor(user, 'name');
   let descriptors = Object.getOwnPropertyDescriptors(user);
 
-  console.log(nameDescriptor);
-  console.log(descriptors);
+  console.log(JSON.stringify(nameDescriptor, null, 2));
+  console.log(JSON.stringify(descriptors, null, 2));
 
 ```
 
@@ -226,6 +226,7 @@ Real life example
   user.isAdmin = true;
   console.log(user);
 
+  // Can delete, only property addition is prevented
   delete user.age;
   console.log(user);
 
