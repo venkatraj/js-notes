@@ -1,5 +1,24 @@
 # Methods for prototypes
 
+As we seen in prototypal inheritance article, __proto__ exists for historical reasons. It is deprecated now. We should use
+* Object.create(proto[, descriptors]) – creates an empty object with given proto as [[Prototype]] and optional property descriptors.
+* Object.getPrototypeOf(obj) – returns the [[Prototype]] of obj.
+* Object.setPrototypeOf(obj, proto) – sets the [[Prototype]] of obj to proto.
+
+instead.
+
+To understand that we need to know javascript evolving history
+
+* The "prototype" property of a constructor function has worked since very ancient times.
+* Later, in the year 2012, Object.create appeared in the standard. It gave the ability to create objects with a given prototype, but did not provide the ability to get/set it. So browsers implemented the non-standard __proto__ accessor that allowed the user to get/set a prototype at any time.
+* Later, in the year 2015, Object.setPrototypeOf and Object.getPrototypeOf were added to the standard, to perform the same functionality as __proto__. As __proto__ was de-facto implemented everywhere, it was kind-of deprecated and made its way to the Annex B of the standard, that is: optional for non-browser environments.
+
+## Very plain object
+
+We wanted to use objects as dictionaries, we should consider Map objects
+If we know what we are doing, we can create as follows.
+Remember that you won't have any methods from `Object.prototype`
+
 ```js
 
     // obj.__proto__ is Object.prototype

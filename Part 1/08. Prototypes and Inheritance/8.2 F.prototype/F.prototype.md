@@ -36,5 +36,54 @@ alert( rabbit.eats ); // true
     function Rabbit() {}
     alert( Rabbit.prototype.constructor == Rabbit );
 
-``
+```
 
+This default prototype objects, makes it easy to create an object of same type, if we don't know its constructor. For example, let us say we have `rabbit` object, but not `Rabbit` constructor
+
+```js
+function Rabbit(name) {
+  this.name = name;
+}
+let rabbit = new Rabbit("White Rabbit")
+
+// In some other module, we are not aware of Rabbit constructor
+// But we do have rabbit object and want to create another one
+// We do this
+let rabbit2 = new rabbit.constructor("Black Rabbit")
+```
+
+Please note that, JS doesn't not ensure correct value for `constructor` property. It can be overwritten and its entirely upon us to make sure it is not.
+
+```js
+// Wrong code, overwrites prototype object and remove constructor property
+function Rabbit() {}
+Rabbit.prototype = {
+  jumps: true
+};
+
+let rabbit = new Rabbit();
+alert(rabbit.constructor === Rabbit); // false
+
+// Right way
+function Rabbit() {}
+
+// Not overwrite Rabbit.prototype totally
+// just add to it
+Rabbit.prototype.jumps = true
+// the default Rabbit.prototype.constructor is preserved
+
+// OR this way
+Rabbit.prototype = {
+  jumps: true,
+  constructor: Rabbit
+};
+
+// now constructor is also correct, because we added it
+```
+
+## Exercises
+
+### Changing "prototype"
+In the code below we create new Rabbit, and then try to modify its prototype.
+
+In the start, we have this code:

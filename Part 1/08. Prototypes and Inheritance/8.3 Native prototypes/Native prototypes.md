@@ -2,34 +2,29 @@
 All javascript built in objects has its own prototype.
 
 ```js
-
     let obj = {};
-    let obj = new Object();
-
 ```
+
 is exactly same as 
+
 ```js
-
     let obj = new Object();
-
 ```
+
 So, `obj.__proto__` is equal to `Object.prototype` which has `toString` and many other methods.
 
 ```js
-
     let obj = {};
 
     console.log(obj.__proto__ === Object.prototype);
     console.log(obj.toString == obj.__proto__.toString);
     console.log(obj.__proto__.toString == Object.prototype.toString);
     console.log(Object.prototype.__proto__);
-
 ```
 
 ## Other built-in prototypes
 
 ```js
-
     let arr = [1,2,3];
     console.log(arr.__proto__ === Array.prototype);
     console.log(arr.__proto__.__proto__ === Object.prototype);
