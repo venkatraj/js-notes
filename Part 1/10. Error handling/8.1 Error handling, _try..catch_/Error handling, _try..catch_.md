@@ -1,10 +1,10 @@
 # Error handling, "try..catch"
 When an error happens in javascript program, it simply dies.
-To prevent that from happening and handle the error programatically, we can use 
-`try..catch` block.
+To prevent that from happening and handle the error programmatically, we can use 
+`try..catch` construct.
 
-Basically we standard program will be in `try` block. It executes. If an error happens,
-rest of the code in try block won't be executed and the execution flow jumps to `catch` block, then it is executed. If no error occured catch block is skipped.
+Basically our standard program will be in `try` block. It executes. If an error happens,
+rest of the code in try block won't be executed and the execution flow jumps to `catch` block, then it is executed. If no error occurred catch block is skipped.
 
 ```js
 // No error try block
@@ -68,7 +68,7 @@ console.log('Program continues it execution');
 JS throws an error object to catch block which has following properties.
 `name` name of the error such as TypeError, ReferenceError, SyntaxError and so on.
 `message` error message
-`stack` backtrace of what error happend and on which line, etc
+`stack` backtrace of what error happened and on which line, etc
 
 ```js
 try {
@@ -85,8 +85,18 @@ try {
 console.log('Program continues it execution');
 ```
 
+### Optional “catch” binding
+*This is a recent addition to the language. Old browsers may need polyfills.*
+```js
+try {
+  // ...
+} catch { // <-- without (err)
+  // ...
+}
+```
+
 ## Real life use for try..catch
-When we process data from database, user input or from other service, there is a high chance that the data is not in desired format by our program. Such as real life use cases for try..catch blocks. For example, what happens when a JSON encoded data isn't parsable in our program? a error occured and script dies. Such situations are ideal for try..catch
+When we process data from database, user input or from other service, there is a high chance that the data is not in desired format by our program. Such as real life use cases for try..catch blocks. For example, what happens when a JSON encoded data isn't parsable in our program? a error occurred and script dies. Such situations are ideal for try..catch
 
 ```js
 try {
@@ -129,7 +139,7 @@ console.log('Program continues it execution');
 ```
 
 ## Rethrowing
-If our catch block is indend to deal with a single problem such as bad json format, but another error occurs in try block, then our catch block should rethrow the error object that it can't handle. Another catch all kind of catch block should handle the rethrown error.
+If our catch block is indent to deal with a single problem such as bad json format, but another error occurs in try block, then our catch block should rethrow the error object that it can't handle. Another catch all kind of catch block should handle the rethrown error.
 ```js
 function readData() {
   let json = '{ "age": 30 }';
@@ -173,3 +183,14 @@ As you can see final block is executed even after the func executed `return`, if
 
 ### Variables are local inside try..catch..finally
 Variables inside these blocks are have block level scope.
+
+## Global catch
+*Env. Specific* The information from this section is not a part of the core JavaScript.
+
+Let’s imagine we’ve got a fatal error outside of try..catch, and the script died. Like a programming error or some other terrible thing.
+
+```js
+window.onerror = function(message, url, line, col, error) {
+  // ...
+};
+```
