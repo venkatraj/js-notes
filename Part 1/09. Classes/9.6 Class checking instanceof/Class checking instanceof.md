@@ -116,3 +116,12 @@ let customToString = Object.prototype.toString;
 console.log(customToString.call(user)); // [object User]
 
 ```
+For most environment-specific objects, there is such a property. Here are some browser specific examples:
+```js
+// toStringTag for the environment-specific object and class:
+console.log( window[Symbol.toStringTag]); // window
+console.log( XMLHttpRequest.prototype[Symbol.toStringTag] ); // XMLHttpRequest
+
+console.log( {}.toString.call(window) ); // [object Window]
+console.log( {}.toString.call(new XMLHttpRequest()) ); // [object XMLHttpRequest]
+```

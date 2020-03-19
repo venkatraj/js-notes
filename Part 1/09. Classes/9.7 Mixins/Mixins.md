@@ -1,5 +1,5 @@
 # Mixins
-A mixin is a class that contains methods and to be used by other classes without being parent class of those classes. We don't use Mixin classes independently
+A mixin is a class that contains methods and to be used by other classes without being a parent class of those classes. We don't use Mixin classes independently
 ## A mixin example
 ```js
 let speechMixin = {
@@ -29,7 +29,7 @@ Actually User can be inherited from other class and still use mixin methods
 class User extends Person {
     // ...
 }
-Object.assing(User.prototype, speechMixin);
+Object.assign(User.prototype, speechMixin);
 ```
 Mixins can use inheritance inside themselves
 ```js

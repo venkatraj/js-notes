@@ -17,7 +17,7 @@ User.someMethod(); // Uncaught TypeError: User.someMethod is not a function
 User.prototype.someMethod(); // Method in prototype;
 
 ```
-With normal function construtor based prototypal inheritance, there is no connection between to constructor functions. Only objects created with it uses `__proto__` property to form inheritance chain.
+With normal function constructor based prototypal inheritance, there is no connection between to constructor functions. Only objects created with it uses `__proto__` property to form inheritance chain.
 
 But `class` construct also supports static methods. When using `extends` it adds a `[[Prototype]]` property to child class that reference parent class
 
@@ -26,7 +26,7 @@ But `class` construct also supports static methods. When using `extends` it adds
 class Animal {}
 class Rabbit extends Animal {}
 
-// for static propertites and methods
+// for static properties and methods
 alert(Rabbit.__proto__ === Animal); // true
 // that's in addition to the "normal" prototype chain for object methods
 alert(Rabbit.prototype.__proto__ === Animal.prototype);
@@ -35,55 +35,104 @@ alert(Rabbit.prototype.__proto__ === Animal.prototype);
 alert(Animal.__proto__ === Function.prototype); // true
 
 ```
-## No static inheritance in built-ins
-Even though build-in objects has static methods (think of Object.defineProperty, etc) it won't be inherited. That is even though `Date` is inherited from `Object`, `Date` doesn't have `Object` static methods such as defineProperty, Object.keys, etc
 
-## Natives are extendable
-Built in classes like Array, map and others are extendable
+## Static methods
+All methods in a class definition are put in prototype object. But if we want a method to be at class level (i.e. static methods), we can achieve it by using static keyword
 ```js
 
-Array.prototype.isEmpty = function() {
-    return this.length === 0;
-}
-
-// add one more method to it (can do more)
-class PowerArray extends Array {
-    isEmpty() {
-        return this.length === 0;
+    class Article {
+        constructor(title, date) {
+            this.title = title;
+            this.date = date;
+        }
+        static compare(articleA, articleB) {
+            return articleA.date - articleB.date;
+        }
     }
-}
 
-let arr = new PowerArray(1, 2, 5, 10, 50);
-alert(arr.isEmpty()); // false
+    // usage
+    let articles = [
+        new Article("Mind", new Date(2016, 1, 1)),
+        new Article("Body", new Date(2016, 0, 1)),
+        new Article("JavaScript", new Date(2016, 11, 1))
+    ];
 
-let filteredArr = arr.filter(item => item >= 10);
-alert(filteredArr); // 10, 50
-alert(filteredArr.isEmpty()); // false
+    articles.sort(Article.compare);
+    console.log( articles[0].title ); // Body
+
 ```
-Please note one very interesting thing. Built-in methods like filter, map and others – return new objects of exactly the inherited type. They rely on the constructor property to do so.
-`arr.constructor === PowerArray`
 
-If you want to change the constructor that are returned by built-in methods such as filter, map, etc you need to use a static getter `Symbol.species`
+## Static properties
+*NOTE* Recent addition to javascript language
 ```js
-class PowerArray extends Array {
-  isEmpty() {
-    return this.length === 0;
+class Article {
+  static publisher = "Ilya Kantor";
+}
+
+console.log( Article.publisher ); // Ilya Kantor
+```
+
+## Inheritance of static properties and methods
+Static properties and methods are inherited.
+
+```js
+class Animal {
+  static planet = "Earth";
+
+  constructor(name, speed) {
+    this.speed = speed;
+    this.name = name;
   }
-  // built-in methods will use this as the constructor
-  static get [Symbol.species]() {
-    return Array;
+
+  run(speed = 0) {
+    this.speed += speed;
+    alert(`${this.name} runs with speed ${this.speed}.`);
+  }
+
+  static compare(animalA, animalB) {
+    return animalA.speed - animalB.speed;
+  }
+
+}
+
+// Inherit from Animal
+class Rabbit extends Animal {
+  hide() {
+    alert(`${this.name} hides!`);
   }
 }
 
-let arr = new PowerArray(1, 2, 5, 10, 50);
-alert(arr.isEmpty()); // false
+let rabbits = [
+  new Rabbit("White Rabbit", 10),
+  new Rabbit("Black Rabbit", 5)
+];
 
-// filter creates new array using arr.constructor[Symbol.species] as constructor
-let filteredArr = arr.filter(item => item >= 10);
+rabbits.sort(Rabbit.compare);
 
-// filteredArr is not PowerArray, but Array
-alert(filteredArr.isEmpty()); // Error: filteredArr.isEmpty is not a function
+rabbits[0].run(); // Black Rabbit runs with speed 5.
+
+alert(Rabbit.planet); // Earth
 ```
+
+So, Rabbit extends Animal creates two [[Prototype]] references:
+
+1. Rabbit function prototypally inherits from Animal function.
+2. Rabbit.prototype prototypally inherits from Animal.prototype.
+As a result, inheritance works both for regular and static methods.
+
+Here, let's check that by code:
+```js
+class Animal {}
+class Rabbit extends Animal {}
+
+// for statics
+alert(Rabbit.__proto__ === Animal); // true
+
+// for regular methods
+alert(Rabbit.prototype.__proto__ === Animal.prototype); // true
+```
+
+
 
 ## Excercise 2
 ```js

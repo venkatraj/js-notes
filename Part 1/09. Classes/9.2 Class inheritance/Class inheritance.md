@@ -1,6 +1,8 @@
-# Class inheritance, super
+# Class inheritance
 To extend a class and create a child class we use `extends`
 
+
+## The `extends` keyword
 ```js
 
     class Animal {
@@ -115,20 +117,24 @@ super() calls parent constructor (and should be used only in child constructor)
 
 ```
 
-### Super inside functions
+### `super` in functions and arrow functions
+
 Functions inside method can't access parent method. i.e. It has no access to `super`
+
 With arrow functions, it is possible. Like `this` and `arguments` arrow functions don't have its own `super`, so it can be used.
 
 ```js
 
     class Rabbit extends Animal {
         start() {
+            // Error: Unexpected super
             setTimeout(function() { super.start() }, 1000);
         }
     }
 
     class Rabbit extends Animal {
         stop() {
+            // works fine
             setTimeout(() => super.stop(), 1000); 
         }
     }    
@@ -172,7 +178,6 @@ If we want to extend the constructor, we can do so
         // ...
     }
 
-    // now fine
     let rabbit = new Rabbit("White Rabbit", 10);
     alert(rabbit.name); // White Rabbit
     alert(rabbit.earLength); // 10
@@ -204,7 +209,7 @@ Please note that this won't work
 ```
 To use `this` inside constructor we should call `super`
 Why??
-When we call a constructor function, it creates a object `this`, manipulates it and returns it.
+When we call a constructor function, it creates an object `this`, manipulates it and returns it.
 ```js
 
     function Animal(name) {
@@ -218,12 +223,12 @@ When we call a constructor function, it creates a object `this`, manipulates it 
 ```
 So when calling `Rabbit` it won't create a `this` object, because it is child class it suppose to be extend the `this` of parent class. So to achieve it and to have access to `this` we should use `super()` before accessing `this`
 
-This prevention of creating `this` object in child constructor function is achived with the help of a special internal property `[[ConstructorKind]]: "derived"`
+This prevention of creating `this` object in child constructor function is achieved with the help of a special internal property `[[ConstructorKind]]: "derived"`
 So when the `ConstructorKind` is normal it creates an empty object as `this`
-With derived `ConstructorKind` it doesn't do it. It expects parent constructor function to do this.
+With derived `ConstructorKind` it doesn't do it. It expects parent constructor function to do this, so we need to invoke it using `super`.
 
 ## Super: internals, [[HomeObject]]
-What is `super` refers? Since it call parent method, the obvious guess it `this.__proto__`
+What is `super` refers? Since it calls parent method, the obvious guess it `this.__proto__`
 ```js
 
     let animal = {
@@ -276,8 +281,11 @@ But the below code prove that we are wrong.
     longEar.eat(); // Error: Maximum call stack size exceeded
 ```
 But why?
-In `longEar` it is true that `this` is equal to `longEar` and `this.__proto__` is equal to `rabbit`
-In `rabbit`, `this` inside `eat` method is `longEar` because we called it with `longEar`'s context. So `this.__proto__` becomes `rabbit` and it calls itself repeatedly and hence the error.
+In `longEar`, `this.__proto__.eat` is equal to `rabbit.eat` and we call it in the context of `longEar`
+
+In `rabbit`, `this.__proto__.eat` is equal to `rabbit.eat` because `this` refers to `longEar` and `this.__proto__` refers to `rabbit` . Now we are calling `rabbit.eat` in the context of `longEar`
+
+This makes `this.__proto__` of `rabbit.eat` equals to `rabbit.eat` itself and resulting in a never ended nested calls
 
 ### [[HomeObject]]
 To overcome the above issue, JS adds another internal property [[HomeObject]].
@@ -356,3 +364,78 @@ let rabbit = {
 rabbit.eat(); // Now, it works
 ```
 
+## Exercises
+
+### Error creating an instance
+Here's the code with Rabbit extending Animal.
+
+Unfortunately, Rabbit objects can’t be created. What’s wrong? Fix it.
+
+```js
+class Animal {
+
+  constructor(name) {
+    this.name = name;
+  }
+
+}
+
+class Rabbit extends Animal {
+  constructor(name) {
+    this.name = name;
+    // Comment out above line and use this 
+    // super(name)
+    this.created = Date.now();
+  }
+}
+
+let rabbit = new Rabbit("White Rabbit"); // Error: this is not defined
+alert(rabbit.name);
+```
+
+### Extended clock
+```js
+class Clock {
+  constructor({ template }) {
+    this.template = template;
+  }
+
+  render() {
+    let date = new Date();
+
+    let hours = date.getHours();
+    if (hours < 10) hours = '0' + hours;
+
+    let mins = date.getMinutes();
+    if (mins < 10) mins = '0' + mins;
+
+    let secs = date.getSeconds();
+    if (secs < 10) secs = '0' + secs;
+
+    let output = this.template
+      .replace('h', hours)
+      .replace('m', mins)
+      .replace('s', secs);
+
+    console.log(output);
+  }
+
+  stop() {
+    clearInterval(this.timer);
+  }
+
+  start() {
+    this.render();
+    this.timer = setInterval(() => this.render(), 1000);
+  }
+}
+
+class ExtendedClock extends Clock {
+    constructor({template}) {
+        super({template})
+    }
+
+    render() {
+        super.render()
+    }
+}
