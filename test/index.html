@@ -1,0 +1,33 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Code Test</title>
+</head>
+<body>
+  <h1>Let's prevent scrolling</h1>
+  <script>
+    const bodyHeight = document.body.clientHeight
+    const docHeight = document.documentElement.clientHeight
+    
+     do {
+      appendTimeStamp()
+     } while (document.body.scrollHeight <= docHeight) 
+       
+
+    function appendTimeStamp() {
+      const p = document.createElement('p')
+      p.innerHTML = new Date()
+      document.body.append(p)
+    }
+
+    window.addEventListener('scroll', e => {
+      const coords = document.body.getBoundingClientRect()
+      console.log(window.pageYOffset + coords.bottom + 100)
+      console.log(document.body.scrollHeight)
+      if (window.pageYOffset + coords.bottom + 100 > document.body.scrollHeight)
+        appendTimeStamp()
+    })
+  </script>
+</body>
+</html>
