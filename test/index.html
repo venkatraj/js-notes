@@ -6,42 +6,13 @@
   </head>
 
   <body>
-    <ul>
-      <li>Click the div to edit.</li>
-      <li>Enter or blur saves the result.</li>
-    </ul>
-
-    HTML is allowed.
-
-    <div id="view" class="view">Text</div>
-
-    <script>
-      // ...your code...
-      // Note: <textarea> should have class="edit"
-      // my.css has styles to make it the same size as div
-      const view = document.getElementById("view");
-      const textArea = document.createElement("textarea");
-      textArea.classList.add("edit");
-
-      view.addEventListener("click", startEdit);
-
-      function startEdit(e) {
-        textArea.value = view.innerHTML;
-        view.replaceWith(textArea);
-        textArea.addEventListener("keydown", handleTextAreaKeyDown);
-        textArea.addEventListener("blur", endEdit);
-        textArea.focus();
-      }
-
-
-      function handleTextAreaKeyDown(e) {
-        if (e.key == "Enter") e.currentTarget.blur();
-      }
-
-      function endEdit() {
-        view.innerHTML = textArea.value;
-        textArea.replaceWith(view);
-      }
-    </script>
+    <input type="text" id="input">
+<script>
+  input.oncut = input.oncopy = input.onpaste = function(event) {
+    console.log(event.clipboardData)
+    // alert(event.type + ' - ' + event.clipboardData.getData('text/plain'));
+    return false;
+  };
+</script>
   </body>
 </html>

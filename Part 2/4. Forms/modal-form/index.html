@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <h1>Actual Page</h1>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis asperiores veritatis consequuntur quia sed, ut tempora ea explicabo ab, error distinctio pariatur quod. Delectus voluptatibus esse dicta eveniet eos? Nemo quaerat necessitatibus non totam perferendis maxime fugiat explicabo quis labore iste ipsa deserunt alias repellat expedita illum, fuga sit accusantium officiis doloremque? Non, ratione earum, nostrum distinctio accusamus, suscipit nemo eum perferendis debitis commodi voluptatem fugit? Nostrum sed iure ea modi aliquam voluptates nemo laboriosam voluptatem nulla vero. Quibusdam delectus debitis rerum id cum, ipsa atque est! Delectus, provident in eveniet atque obcaecati quia voluptatibus nemo quae dicta assumenda cum minus, ipsum sint sed rem cumque est voluptatem soluta aut repudiandae ad? Ab, explicabo? Eum natus dignissimos mollitia? Velit, quasi eaque, esse exercitationem nostrum possimus perspiciatis minus placeat quis quos a! Earum, eum veniam delectus obcaecati est molestiae quos atque. Voluptate possimus, dignissimos consectetur earum ab dolor vero nulla illo dolorum temporibus provident sit quia fuga molestias vel quisquam? Maiores possimus facilis, illo amet esse sit dolorum voluptatum consequuntur nesciunt beatae mollitia dignissimos accusantium sed culpa ipsam reiciendis corporis doloremque, in sint corrupti voluptate voluptas. Aliquam inventore fugit necessitatibus ipsa quaerat quia magnam est, perferendis itaque at alias consequatur corrupti ex similique repudiandae iure, eligendi nobis, perspiciatis sed saepe. Nesciunt quod possimus natus! Fuga, optio. Illo dignissimos aut esse non unde fugit hic fuga ratione doloremque explicabo illum similique, architecto consequuntur natus vitae qui necessitatibus modi, enim eos placeat. Dolores necessitatibus, consequuntur exercitationem expedita nostrum earum quos recusandae provident deserunt.</p>
+  <button id="show-modal">Click to show form</button>
+
+  <div id="prompt-form-container">
+    <form id="prompt-form">
+      <div id="prompt-message">Enter something...
+        <br>Please..</div>
+      <input name="text" type="text">
+      <input type="submit" value="Ok">
+      <input type="button" name="cancel" value="Cancel">
+    </form>
+  </div>
+
+  <script>
+    const modal = document.getElementById('prompt-form-container')
+    modal.hidden = true
+
+    const promptForm = document.getElementById('prompt-form')
+    let data = null;
+
+    const showModalBtn = document.getElementById('show-modal')
+    showModalBtn.addEventListener('click', e => {
+      modal.hidden = false;
+      promptForm.addEventListener('submit', e => {
+        data = promptForm.text.value
+        
+      })
+    })
+
+
+
+  </script>
+
+</body>
+
+</html>
