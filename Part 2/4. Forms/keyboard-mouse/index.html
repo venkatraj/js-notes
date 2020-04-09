@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    #mouse {
+      display: inline-block;
+      cursor: pointer;
+      margin: 0;
+    }
+
+    #mouse:focus {
+      outline: 1px dashed black;
+    }
+  </style>
+</head>
+
+<body>
+
+  <p>Click on the mouse and move it with arrow keys.</p>
+
+  <pre id="mouse">
+ _   _
+(q\_/p)
+ /. .\
+=\_t_/=   __
+ /   \   (
+((   ))   )
+/\) (/\  /
+\  Y  /-'
+ nn^nn
+</pre>
+
+
+  <script>
+    const mouse = document.getElementById('mouse')
+    mouse.tabIndex = 1
+    mouse.addEventListener('click', e => {
+      const mouseRect = mouse.getBoundingClientRect()
+      mouse.style.position = 'fixed'
+      mouse.style.left = `${mouseRect.left}px`
+      mouse.style.top = `${mouseRect.top}px`
+      mouse.addEventListener('keydown', e => {
+        const validKeys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown']
+        if (!validKeys.includes(e.code)) return
+        moveMouse(e.code)
+      })
+    })
+
+    function moveMouse(direction) {
+      switch (direction) {
+        case 'ArrowLeft':
+          mouse.style.left = `${parseInt(mouse.style.left) - 10}px`
+          break;
+        case 'ArrowRight':
+          mouse.style.left = `${parseInt(mouse.style.left) + 10}px`
+          break;
+          case 'ArrowDown':
+          mouse.style.top = `${parseInt(mouse.style.top) + 10}px`
+          break;
+          case 'ArrowUp':
+          mouse.style.top = `${parseInt(mouse.style.top) - 10}px`
+          break;
+        
+      }
+    }
+  </script>
+
+</body>
+
+</html>
