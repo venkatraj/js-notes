@@ -8,11 +8,15 @@
   <body>
     <input type="text" id="input">
 <script>
-  input.oncut = input.oncopy = input.onpaste = function(event) {
-    console.log(event.clipboardData)
-    // alert(event.type + ' - ' + event.clipboardData.getData('text/plain'));
-    return false;
-  };
+  // window.addEventListener('beforeunload', e => {
+  //   console.log('runs')
+  //   e.preventDefault()
+  // })
+
+  window.onbeforeunload = function() {
+    return false
+  }
+
 </script>
   </body>
 </html>
